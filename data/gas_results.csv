@@ -1,0 +1,57 @@
+rule,scenario,scheme,data_kb,onchain_bytes,gas,fits_one_tx,increase_vs_x25519_%
+current (EIP-7623),A. register key,X25519,0,100,71059,True,0.0
+current (EIP-7623),B. key exchange (data off-chain),X25519,0,164,29742,True,0.0
+current (EIP-7623),C. full credential on-chain,X25519,10,10372,432850,True,0.0
+current (EIP-7623),C. full credential on-chain,X25519,50,51332,2067260,True,0.0
+current (EIP-7623),C. full credential on-chain,X25519,100,102532,4107700,True,0.0
+current (EIP-7623),C. full credential on-chain,X25519,500,512132,20445380,False,0.0
+current (EIP-7623),C. full credential on-chain,X25519,1024,1048708,41845750,False,0.0
+current (EIP-7623),A. register key,ML-KEM-512,0,868,613760,True,763.7329543055771
+current (EIP-7623),B. key exchange (data off-chain),ML-KEM-512,0,900,54990,True,84.89005446842847
+current (EIP-7623),C. full credential on-chain,ML-KEM-512,10,11108,461990,True,6.732124292480068
+current (EIP-7623),C. full credential on-chain,ML-KEM-512,50,52068,2094210,True,1.3036579820632221
+current (EIP-7623),C. full credential on-chain,ML-KEM-512,100,103268,4138310,True,0.7451858704384362
+current (EIP-7623),C. full credential on-chain,ML-KEM-512,500,512868,20472870,False,0.1344558037072341
+current (EIP-7623),C. full credential on-chain,ML-KEM-512,1024,1049444,41874350,False,0.06834624782683374
+current (EIP-7623),A. register key,ML-KEM-768,0,1252,885153,True,1145.6592409124812
+current (EIP-7623),B. key exchange (data off-chain),ML-KEM-768,0,1220,67730,True,127.72510254858452
+current (EIP-7623),C. full credential on-chain,ML-KEM-768,10,11428,474760,True,9.682337992376123
+current (EIP-7623),C. full credential on-chain,ML-KEM-768,50,52388,2108630,True,2.0011996555827416
+current (EIP-7623),C. full credential on-chain,ML-KEM-768,100,103588,4151440,True,1.0648294666114833
+current (EIP-7623),C. full credential on-chain,ML-KEM-768,500,513188,20485760,False,0.19750183170965663
+current (EIP-7623),C. full credential on-chain,ML-KEM-768,1024,1049764,41882560,False,0.08796592246524959
+current (EIP-7623),A. register key,ML-KEM-1024,0,1636,1156535,True,1527.5700474253788
+current (EIP-7623),B. key exchange (data off-chain),ML-KEM-1024,0,1700,86900,True,192.1794095891332
+current (EIP-7623),C. full credential on-chain,ML-KEM-1024,10,11908,494290,True,14.1942936352085
+current (EIP-7623),C. full credential on-chain,ML-KEM-1024,50,52868,2127860,True,2.931416464305414
+current (EIP-7623),C. full credential on-chain,ML-KEM-1024,100,104068,4169500,True,1.5044915646225343
+current (EIP-7623),C. full credential on-chain,ML-KEM-1024,500,513668,20505110,False,0.2921442399211882
+current (EIP-7623),C. full credential on-chain,ML-KEM-1024,1024,1050244,41904490,False,0.1403726782289727
+proposed (EIP-7976),A. register key,X25519,0,100,71047,True,0.0
+proposed (EIP-7976),B. key exchange (data off-chain),X25519,0,164,31496,True,0.0
+proposed (EIP-7976),C. full credential on-chain,X25519,10,10372,684808,True,0.0
+proposed (EIP-7976),C. full credential on-chain,X25519,50,51332,3306248,True,0.0
+proposed (EIP-7976),C. full credential on-chain,X25519,100,102532,6583048,True,0.0
+proposed (EIP-7976),C. full credential on-chain,X25519,500,512132,32797448,False,0.0
+proposed (EIP-7976),C. full credential on-chain,X25519,1024,1048708,67138312,False,0.0
+proposed (EIP-7976),A. register key,ML-KEM-512,0,868,613784,True,763.912621222571
+proposed (EIP-7976),B. key exchange (data off-chain),ML-KEM-512,0,900,78600,True,149.55549911099823
+proposed (EIP-7976),C. full credential on-chain,ML-KEM-512,10,11108,731912,True,6.87842431747292
+proposed (EIP-7976),C. full credential on-chain,ML-KEM-512,50,52068,3353352,True,1.424696513994106
+proposed (EIP-7976),C. full credential on-chain,ML-KEM-512,100,103268,6630152,True,0.7155348100150505
+proposed (EIP-7976),C. full credential on-chain,ML-KEM-512,500,512868,32844552,False,0.14362093050654945
+proposed (EIP-7976),C. full credential on-chain,ML-KEM-512,1024,1049444,67185416,False,0.07015964297703015
+proposed (EIP-7976),A. register key,ML-KEM-768,0,1252,885177,True,1145.9034160485312
+proposed (EIP-7976),B. key exchange (data off-chain),ML-KEM-768,0,1220,99080,True,214.57962915925833
+proposed (EIP-7976),C. full credential on-chain,ML-KEM-768,10,11428,752392,True,9.869043585939409
+proposed (EIP-7976),C. full credential on-chain,ML-KEM-768,50,52388,3373832,True,2.0441297809480785
+proposed (EIP-7976),C. full credential on-chain,ML-KEM-768,100,103588,6650632,True,1.0266369013259613
+proposed (EIP-7976),C. full credential on-chain,ML-KEM-768,500,513188,32865032,False,0.20606481333547144
+proposed (EIP-7976),C. full credential on-chain,ML-KEM-768,1024,1049764,67205896,False,0.10066383557572056
+proposed (EIP-7976),A. register key,ML-KEM-1024,0,1636,1156499,True,1527.794277027883
+proposed (EIP-7976),B. key exchange (data off-chain),ML-KEM-1024,0,1700,129800,True,312.11582423164845
+proposed (EIP-7976),C. full credential on-chain,ML-KEM-1024,10,11908,783112,True,14.35497248863915
+proposed (EIP-7976),C. full credential on-chain,ML-KEM-1024,50,52868,3404552,True,2.973279681379015
+proposed (EIP-7976),C. full credential on-chain,ML-KEM-1024,100,104068,6681352,True,1.4932900382922831
+proposed (EIP-7976),C. full credential on-chain,ML-KEM-1024,500,513668,32895752,False,0.29973063757886553
+proposed (EIP-7976),C. full credential on-chain,ML-KEM-1024,1024,1050244,67236616,False,0.1464201244737895

@@ -1,9 +1,43 @@
-cffi==2.1.1
-cryptography==50.0.2
-kyber-py==1.2.0
-numpy==2.5.4
-pandas==3.1.1
-pycparser==3.12
-pycryptodome==4.4.0
-python-dateutil==4.0.0
-tzdata==2026.6
+# ML-KEM DID Gas Project — Progress & Findings
+
+Repo: github.com/chankang-rgb/pqc-gas-project
+
+## Design decisions
+- ML-KEM is a KEM (32-byte shared secret), so data is encrypted with KEM-DEM: ML-KEM + AES-256-GCM. Baseline: X25519 + HKDF + AES-256-GCM.
+- Library: kyber-py (pure Python, FIPS 203). Timings are NOT representative of C implementations; plan to re-run with liboqs-python.
+- Gas fee is driven by on-chain bytes and storage, not CPU time → gas computed from key/ciphertext sizes with the real pricing formula, not regressed from latency.
+- Pricing rules modelled: current = Pectra EIP-7623 (calldata 4/16 standard, 10/40 floor); proposed = Glamsterdam EIP-7976 (64/64 floor, not live). Fusaka EIP-7825 per-tx cap 16,777,216 gas. SSTORE new slot 22,100 (20,000 + cold 2,100). Execution overhead 5,000 gas is an assumption.
+
+## Done
+1. src/hybrid.py + test_hybrid.py — hybrid encryption works; extra bytes for key delivery: ML-KEM-768 1088 B vs X25519 32 B.
+2. src/benchmark.py — 4 schemes × 5 sizes (10KB–1MB) × 200 reps, randomized order (seed 42), 20 warm-up rounds → data/results.csv (4000 rows).
+   - Lesson: blocked (non-randomized) order gave non-monotonic medians; randomization fixed it.
+3. src/analysis.py — median (quantile) regression; OLS shown for comparison.
+   - Lesson: OLS was distorted by 0.5–1.1% outliers (max 116 ms vs ~5.6 ms median), even gave a negative slope.
+4. src/gas_model.py — 3 DID scenarios × 2 pricing rules → data/gas_results.csv.
+
+## Timing results (user's MacBook, median regression, encrypt)
+| Scheme | Fixed cost (ms) | Slope (ms/MB) | vs X25519 |
+|---|---|---|---|
+| ML-KEM-512 | 2.581 | 0.362 | 17.8× |
+| ML-KEM-768 | 3.974 | 0.350 | 27.4× |
+| ML-KEM-1024 | 5.596 | 0.358 | 38.6× |
+| X25519 | 0.145 | 0.356 | 1× |
+- Slopes practically identical (max diff 0.01 ms/MB); Model 2 p = 0.21 (enc), 0.048 (dec). Significant ≠ important.
+- Fixed cost grows ~1.5 ms (enc) / ~1.8 ms (dec) per +256 lattice dimensions (3 points, descriptive only).
+
+## Gas results (% increase vs X25519)
+| Scenario | 512 | 768 | 1024 |
+|---|---|---|---|
+| A. register public key in contract storage (either rule) | +764% | +1146% | +1528% |
+| B. key exchange, credential off-chain — current rules | +85% | +128% | +192% |
+| B. same — proposed EIP-7976 | +150% | +215% | +312% |
+| C. whole credential on-chain, 10KB → 100KB | +6.7%→+0.75% | +9.7%→+1.1% | +14%→+1.5% |
+- A is storage-dominated (SSTORE per 32-byte slot), so calldata repricing barely matters.
+- C: ≥500KB exceeds the 16.78M per-tx cap for every scheme → credentials must live off-chain.
+- Design implication: put only a hash/commitment of the ML-KEM key on-chain (idea for discussion section).
+
+## Next
+- Plots (matplotlib/seaborn)
+- liboqs-python re-run
+- README (English)
