@@ -76,10 +76,11 @@ for ax, col, title in zip(axes, ["encrypt_total_ms", "decrypt_total_ms"],
     ax.set_title(title)
 axes[0].set_ylabel("Median time (ms)")
 axes[0].set_ylim(bottom=0)
-axes[1].legend(loc="upper left", ncol=2, fontsize=9)
+fig.legend(*axes[0].get_legend_handles_labels(), loc="lower center", ncol=4,
+           fontsize=9, bbox_to_anchor=(0.5, -0.1))
 fig.suptitle("ML-KEM cost is almost flat in data size: it is a fixed key-exchange cost",
              x=0.01, ha="left", fontsize=12, fontweight="bold")
-fig.text(0.01, -0.03, "Lines: median of 200 runs. Bands: 25th-75th percentile. "
+fig.text(0.01, -0.16, "Lines: median of 200 runs. Bands: 25th-75th percentile. "
          "Pure-Python ML-KEM (kyber-py); absolute times are higher than in C.",
          fontsize=8.5, color=INK_2)
 save(fig, "fig1_latency_vs_size.png")
